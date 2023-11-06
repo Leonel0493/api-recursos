@@ -1,0 +1,8 @@
+# Dependency directories
+node_modules/
+
+# Connection Strings
+db/NETConnectionString.txt
+
+# environment variable files
+.env
