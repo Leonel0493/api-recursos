@@ -16,3 +16,18 @@ export interface IUpdateCountryData {
   flag_img: Buffer | null;
   modified_by: string;
 }
+
+export interface ISaveRequestData {
+  country: string;
+  abbreviation: string;
+  flagImage: Buffer | null;
+  createdBy: string;
+}
+
+export interface IUpdateRequestData {
+  id: string;
+  country: string;
+  abbreviation: string;
+  flagImage: Buffer | null;
+  modifiedBy: string;
+}
