@@ -22,6 +22,9 @@ create table provinces(
     key province_country (id_country)
 );
 
+CREATE INDEX idx_province ON provinces (province);
+CREATE INDEX idx_id_country ON provinces (id_country);
+
 create table cities(
 	id varchar(45) primary key,
     city varchar(50) not null,
