@@ -1,7 +1,9 @@
+import { InvalidArgumentError } from "../../Shared/Domain/InvalidArgumentError";
 import getUuid from "../../Shared/Infra/uuidGenerator";
 import { Country } from "../Domain/Country";
 import { ICountry } from "../Domain/CountryInterfaces";
 import { CountryRepository } from "../Domain/CountryRepository";
+import { CountryValidations } from "./CountryValidations";
 
 export class SaveCountry {
   constructor(private readonly repository: CountryRepository) {}
@@ -12,7 +14,14 @@ export class SaveCountry {
     flagImage: Buffer | null,
     createdBy: string
   ): Promise<ICountry> {
-    // TODO: Agregar validacion de nombre de Pais para que no existan dos suplicados, recomendable agregar campo unique a DB
+    // * Validate if country name allready exist
+    const validations = new CountryValidations(this.repository);
+    const exists = await validations.ValidateIfCountryNameExists(country);
+
+    if (exists)
+      throw new InvalidArgumentError(
+        "Lo sentimos 😔, el nombre del pais que deseas guardar ya esta ocupado por favor intenta con otro"
+      );
 
     const _Icountry: ICountry = {
       id: getUuid(),

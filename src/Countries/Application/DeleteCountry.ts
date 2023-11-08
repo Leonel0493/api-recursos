@@ -12,7 +12,7 @@ export class DeleteCountry {
 
     if (countryExist === null)
       throw new InvalidArgumentError(
-        "Lo siento el pais que deseas eliminar no existe"
+        "Lo sentimos 😔, el pais que deseas eliminar no existe"
       );
 
     const countryId = new Id(id);

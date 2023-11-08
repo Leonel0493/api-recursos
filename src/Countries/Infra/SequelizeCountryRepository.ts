@@ -22,7 +22,7 @@ export class SequelizeCountryRepository implements CountryRepository {
 
     if (savedCountry === null)
       throw new InvalidArgumentError(
-        "Error al guardar el pais, por favor intentelo mas tarde..."
+        "Lo sentimos 😔, no logramos guardar el pais en este momento."
       );
 
     return _country;
@@ -49,7 +49,7 @@ export class SequelizeCountryRepository implements CountryRepository {
 
     if (newCountryInfo === 0)
       throw new InvalidArgumentError(
-        "Lo sentimos no pudimos actualizar los datos del pais"
+        "Lo sentimos 😔, no pudimos actualizar los datos del pais"
       );
 
     return _newCountry;
@@ -77,13 +77,13 @@ export class SequelizeCountryRepository implements CountryRepository {
     return _foundCountry;
   }
 
-  async findByName(countryName: CountryName): Promise<boolean> {
+  async findByName(countryName: CountryName): Promise<ICountry | null> {
     const _foundCountry = await _Country.findOne({
       where: { country: countryName.country },
       raw: true,
     });
 
-    return _foundCountry === null ? false : true;
+    return _foundCountry;
   }
 
   async getAll(): Promise<ICountry[]> {

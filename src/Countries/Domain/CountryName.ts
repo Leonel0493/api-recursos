@@ -2,7 +2,7 @@ import { InvalidArgumentError } from "../../Shared/Domain/InvalidArgumentError";
 
 export class CountryName {
   constructor(readonly country: string) {
-    this.country = country;
+    this.country = country.toUpperCase();
     this.validateCountryName(this.country);
   }
 

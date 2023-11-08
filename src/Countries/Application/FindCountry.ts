@@ -11,7 +11,7 @@ export class FindCountry {
     return this.repository.findeById(countryId);
   }
 
-  async FindByCountryName(name: string): Promise<boolean> {
+  async FindByCountryName(name: string): Promise<ICountry | null> {
     const countryName = new CountryName(name);
     return this.repository.findByName(countryName);
   }

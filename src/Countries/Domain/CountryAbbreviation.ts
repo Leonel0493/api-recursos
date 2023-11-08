@@ -2,7 +2,7 @@ import { InvalidArgumentError } from "../../Shared/Domain/InvalidArgumentError";
 
 export class CountryAbbreviation {
   constructor(readonly abbreviation: string) {
-    this.abbreviation = abbreviation;
+    this.abbreviation = abbreviation.toUpperCase();
     this.validateLenght(this.abbreviation);
   }
 

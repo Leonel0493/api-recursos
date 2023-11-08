@@ -9,12 +9,11 @@ export class UpdateCountry {
 
   async Update(id: string, data: IUpdateCountryData) {
     const find = new FindCountry(this.repository);
+
     const countryToUpdate = await find.FindById(id);
 
     if (countryToUpdate !== null) {
       const newCountry = new Country(countryToUpdate);
-
-      // TODO: Agregar validacion de nombre de pais antes de actualizar los datos
 
       newCountry.UpdateCountryName(data.country);
       newCountry.UpdateAbbreviation(data.abbreviation);
@@ -26,7 +25,7 @@ export class UpdateCountry {
     }
 
     throw new InvalidArgumentError(
-      "Lo sentimos el pais que desea actualizar no existe, por favor ingrese uno nuevo"
+      "Lo sentimos 😔, no podemos actualizar el pais ya que el nombre esta ocupado o este no existe"
     );
   }
 }
