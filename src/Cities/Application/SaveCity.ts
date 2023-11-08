@@ -22,8 +22,6 @@ export class SaveCity {
       enabled: true,
     };
 
-    // TODO: Agregar una validacion de nombre previo en la provincia
-
     const _city = new City(_Icity);
 
     return this.repository.save(_city);

@@ -1,6 +1,5 @@
 import { Id } from "../../Shared/Domain/Id";
 import { IProvince } from "../Domain/ProvinceInterfaces";
-import { ProvinceName } from "../Domain/ProvinceName";
 import { ProvinceRepository } from "../Domain/ProvinceRepository";
 
 export class FindProvince {
@@ -18,10 +17,5 @@ export class FindProvince {
   async FindByCountryId(idCountry: string): Promise<IProvince[] | null> {
     const _idCountry = new Id(idCountry);
     return this.repository.findByCountryId(_idCountry);
-  }
-
-  async FindByProvinceName(provinceName: string): Promise<boolean> {
-    const _provinceName = new ProvinceName(provinceName);
-    return this.repository.findByProvinceName(_provinceName);
   }
 }

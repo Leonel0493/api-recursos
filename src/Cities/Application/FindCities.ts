@@ -15,7 +15,7 @@ export class FindCities {
     return this.repository.findById(_idCity);
   }
 
-  async FindByCityName(cityName: string): Promise<boolean> {
+  async FindByCityName(cityName: string): Promise<ICity | null> {
     const _cityName = new CityName(cityName);
     return this.repository.findByCityName(_cityName);
   }

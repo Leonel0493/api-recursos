@@ -81,13 +81,13 @@ export class SequelizeCityRepository implements CityRepository {
     return foundCity;
   }
 
-  async findByCityName(cityName: CityName): Promise<boolean> {
+  async findByCityName(cityName: CityName): Promise<ICity | null> {
     const foundCity = await _Cities.findOne({
       where: { city: cityName.cityName },
       raw: true,
     });
 
-    return foundCity === null ? false : true;
+    return foundCity;
   }
 
   async findeByProvinceId(idProvince: Id): Promise<ICity[] | null> {

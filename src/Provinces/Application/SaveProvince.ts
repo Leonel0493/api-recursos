@@ -1,7 +1,9 @@
+import { InvalidArgumentError } from "../../Shared/Domain/InvalidArgumentError";
 import getUuid from "../../Shared/Infra/uuidGenerator";
 import { Province } from "../Domain/Province";
 import { IProvince } from "../Domain/ProvinceInterfaces";
 import { ProvinceRepository } from "../Domain/ProvinceRepository";
+import { ProvinceValidations } from "./ProvinceValidations";
 
 export class SaveProvince {
   constructor(private readonly repository: ProvinceRepository) {}
@@ -11,6 +13,14 @@ export class SaveProvince {
     idCountry: string,
     createdBy: string
   ): Promise<IProvince> {
+    const validations = new ProvinceValidations(this.repository);
+    const exists = await validations.ProvinceNameExists(province, idCountry);
+
+    if (exists)
+      throw new InvalidArgumentError(
+        "Lo sentimos 😔, el nombre de la provincia ya esta asignado al pais que deseas agregarla"
+      );
+
     const data: IProvince = {
       id: getUuid(),
       province,
@@ -21,8 +31,6 @@ export class SaveProvince {
       modified_at: null,
       enabled: true,
     };
-
-    // TODO: agregar validacion de nombre de la provincia
 
     const _province = new Province(data);
 

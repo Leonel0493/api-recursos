@@ -2,8 +2,16 @@ import { InvalidArgumentError } from "../../Shared/Domain/InvalidArgumentError";
 
 export class ProvinceName {
   constructor(readonly provinceName: string) {
-    this.provinceName = provinceName;
+    this.provinceName = this.CleanNaming(provinceName);
     this.ValidateProvinceName(this.provinceName);
+  }
+
+  private CleanNaming(provinceName: string): string {
+    let cleanName = provinceName.trim().toUpperCase();
+
+    cleanName = cleanName.replace(/\s+/g, " ");
+
+    return cleanName;
   }
 
   private ValidateProvinceName(provice: string) {

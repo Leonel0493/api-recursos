@@ -89,12 +89,14 @@ export class SequelizeProvinceRepository implements ProvinceRepository {
     return allProvinces;
   }
 
-  async findByProvinceName(provinceName: ProvinceName): Promise<boolean> {
+  async findByProvinceName(
+    provinceName: ProvinceName
+  ): Promise<IProvince | null> {
     const foundProvince = await _Provinces.findOne({
       where: { province: provinceName.provinceName },
       raw: true,
     });
 
-    return foundProvince === null ? false : true;
+    return foundProvince;
   }
 }
